@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<project name="Sculpin Site" description="Simple PHING Build File" default="publish" >
+
+    <!-- ========================================================================== -->
+    <!-- Target: publish                                                            -->
+    <!-- Creates the public dir, regenerates the                                    -->
+    <!-- HTML in there for static deployment                                        -->
+    <!-- ========================================================================== -->
+    <target
+        name="publish"
+        description="Compile assets into static directory"
+        depends="init">
+        <exec command="php bin/sculpin generate --env=prod" escape="false" passthru="true" />
+        <move file="output_prod" tofile="public" overwrite="true"/>
+    </target>
+
+    <!-- ========================================================================== -->
+    <!-- Target: reset                                                              -->
+    <!-- Warning: very destructive! Used mainly to                                  -->
+    <!-- reset the repo for kickstart development                                   -->
+    <!-- ========================================================================== -->
+    <target
+        name="cleanup"
+        description="Destroy any files that would be used for site content">
+        <delete dir="output_dev" />
+        <delete dir="public" />
+    </target>
+
+
+    <!-- ========================================================================== -->
+    <!-- Target: init                                                               -->
+    <!-- Initial project init, can be used to create the Phrozn structure from      -->
+    <!-- scratch so you can get going quickly. Not used often except initially      -->
+    <!-- ========================================================================== -->
+    <target name="init" description="Init the app after the initial composer install">
+        <if>
+            <not>
+                <available file='public' type='dir' />
+            </not>
+            <then>
+                <echo message="Src directory does not yet exist - creating new Sculpin project."/>
+                <exec command="php bin/sculptin generate --env=prod" escape="false" passthru="true" />
+            </then>
+        </if>
+    </target>
+
+</project>

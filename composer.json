@@ -1,0 +1,26 @@
+{
+    "name": "presentation/pair-programming-tools",
+    "description": "Presentation on pair programming tools and methods.",
+    "require": {
+        "sculpin/sculpin": "2.0.*@dev"
+    },
+    "require-dev": {
+        "phing/phing": "dev-master"
+    },
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Chris Buryta",
+            "email": "chris@streamlinesocial.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "config": {
+        "bin-dir": "bin"
+    },
+    "scripts": {
+    },
+    "config": {
+        "component-dir": "source/components"
+    }
+}
