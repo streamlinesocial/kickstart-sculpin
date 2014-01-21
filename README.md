@@ -1,5 +1,5 @@
-Kickstart Phrozn (Static HTML Site)
-===================================
+Kickstart Sculpin (Static HTML Site)
+====================================
 
 TL;DR
 =====
@@ -12,17 +12,19 @@ TL;DR
 Info
 ====
 
-This site uses PHP Phrozn app to build a static site.
+This site uses PHP Sculpin app to build a static site.
 
-Dynamic files that should be edited are in src directory.
+Dynamic files that should be edited are in source directory.
 
-General process when working with Phing is to edit the 'src' files, then compile.
+General process when working with Sculpin is to edit the 'source' files, then publish.
 
-Combiling will parse the files in the 'src' dir, and render HTML with them.
+Your able to kick up a dev server on the fly
+
+    php bin/sculpin generate --watch --server
 
 Public files (can be the webroot in servers) will be renderd to the public directory.
 
-**IMPORTANT:** The public dir will be wiped when building. Edit the src files only.
+**IMPORTANT:** The public dir will be wiped when building. Edit the source files only.
 
 Installing
 ==========
@@ -35,19 +37,18 @@ install command. That will add the phr bin to the bin folder for you.
 Building / Updating
 ===================
 
-After changes to src are made, run the following command to build the public files from src
+After changes to src are made, run the following command to build the public files from source.
 
-    php bin/phing compile
+Prod (updates the public direcory)
 
-Local Server
-============
+    php bin/phing publish
 
-You can use PHP's built in server for development. For example, create a server that listens
-to port 12888 (so you can use local http://localhost:12888) use...
+Development (local server that creates an 'output_dev' directory)
 
-    php -S 0.0.0.0:12888 -t public
+    php bin/sculpin generate --watch --server
 
 References
 ==========
 
+- https://sculpin.io/getstarted/
 
